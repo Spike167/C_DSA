@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-int binary_search(int array[], int length, int number, int low, int high);
+//int binary_search(int array[], int number, int low, int high);
+int binary_search(int array[], int length, int number);
 
 int main(void)
 {
@@ -15,7 +16,8 @@ int main(void)
         return 1;
     }
 
-    int index = binary_search(array, length, number, 0, length - 1);
+    //int index = binary_search(array, number, 0, length - 1);
+    int index = binary_search(array, length, number);
     if (index == -1)
     {
         printf("Number not found! \n");
@@ -27,7 +29,10 @@ int main(void)
     return 0;
 }
 
-int binary_search(int array[], int length, int number, int low, int high)
+
+// Recursive Binary Search
+/*
+int binary_search(int array[], int number, int low, int high)
 {
     while (low <= high)
     {
@@ -38,11 +43,38 @@ int binary_search(int array[], int length, int number, int low, int high)
         }
         else if (number > array[middle])
         {
-            return binary_search(array, length, number, middle + 1, high);
+            return binary_search(array, number, middle + 1, high);
         }
         else if (number < array[middle])
         {
-            return binary_search(array, length, number, low, middle - 1);
+            return binary_search(array, number, low, middle - 1);
+        }
+    }
+    return -1;
+}
+*/
+
+
+// Iterative Binary Search
+int binary_search(int array[], int length, int number)
+{
+    int low = 0;
+    int high = length - 1;
+
+    while (low <= high)
+    {
+        int middle = (low + high) / 2;
+        if (number == array[middle])
+        {
+            return middle;
+        }
+        else if (number > array[middle])
+        {
+            low = middle + 1;
+        }
+        else if (number < array[middle])
+        {
+            high = middle - 1;
         }
     }
     return -1;
