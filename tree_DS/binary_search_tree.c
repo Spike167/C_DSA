@@ -12,6 +12,7 @@ typedef struct node
 
 
 int insert_node(node **binary_search_tree, int data);
+int max_node(node **binary_search_tree);
 int min_node(node **binary_search_tree);
 int delete_node(node **binary_search_tree, int data);
 int search_node(node **binary_search_tree, int data);
@@ -34,6 +35,7 @@ int main(void)
         printf("6. Post-Order Traversal \n");
         printf("7. Root Element \n");
         printf("8. Lowest Node \n");
+        printf("9. Highest Node \n");
 
         printf("Please Select: ");
         int choice;
@@ -142,6 +144,10 @@ int main(void)
         {
             printf("%i\n", min_node(&binary_search_tree));
         }
+        else if (choice == 9)
+        {
+            printf("%i\n", max_node(&binary_search_tree));
+        }
         else
         {
             printf("Invalid Choice! \n");
@@ -199,6 +205,23 @@ int insert_node(node **binary_search_tree, int data)
         }
     }
     return 0;
+}
+
+
+int max_node(node **binary_search_tree)
+{
+    if (*binary_search_tree == NULL)
+    {
+        printf("tree is empty \n");
+        return -1;
+    }
+
+    node *current_node = *binary_search_tree;
+    while (current_node->right != NULL)
+    {
+        current_node = current_node->right;
+    }
+    return current_node->data;
 }
 
 
