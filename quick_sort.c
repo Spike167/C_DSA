@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void quick_sort(int array[], int start, int end);
+void quick_sort(int array[], int start, int end);  // O(n log n)
 int partition(int array[], int start, int end);
 
 int main(void)
